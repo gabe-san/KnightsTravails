@@ -1,40 +1,34 @@
-import Tree from './binarytree';
-import { generateRandomArray, printNode } from './helperfunctions';
+export default class Graph {
+  constructor(rows = 8, cols = 8) {
+    this.nodeList = [];
+    this.arr = new Array(rows);
+    for (let i = 0; i < rows; i++) {
+      this.arr[i] = new Array(cols);
+    }
+  }
 
-const prettyPrint = (node, prefix = '', isLeft = true) => {
-  if (node === null) {
-    return;
+  addNode(node) {
+    // import new Node class
+    // push node into nodelist
+    this.nodeList.push(node)
   }
-  if (node.right !== null) {
-    prettyPrint(node.right, `${prefix}${isLeft ? '│   ' : '    '}`, false);
-  }
-  console.log(`${prefix}${isLeft ? '└── ' : '┌── '}${node.data}`);
-  if (node.left !== null) {
-    prettyPrint(node.left, `${prefix}${isLeft ? '    ' : '│   '}`, true);
-  }
-};
 
-const arr = generateRandomArray(0, 100, 10);
-console.log(arr)
-const BSTree = new Tree(arr);
-BSTree.root = BSTree.buildTree();
-prettyPrint(BSTree.root)
-console.log(BSTree.isBalanced())
-// console.log(BSTree.levelOrder(printNode))
-// console.log(BSTree.preOrder(printNode, BSTree.root))
-// console.log(BSTree.inOrder(printNode, BSTree.root))
-// console.log(BSTree.postOrder(printNode, BSTree.root))
-BSTree.insert(110, BSTree.root)
-BSTree.insert(130, BSTree.root)
-BSTree.insert(140, BSTree.root)
-BSTree.insert(150, BSTree.root)
-BSTree.insert(200, BSTree.root)
-prettyPrint(BSTree.root)
-console.log(BSTree.isBalanced())
-await BSTree.rebalance();
-console.log(BSTree.isBalanced())
-prettyPrint(BSTree.root)
-// console.log(BSTree.levelOrder(printNode))
-// console.log(BSTree.preOrder(printNode, BSTree.root))
-console.log(BSTree.inOrder(printNode, BSTree.root))
-// console.log(BSTree.postOrder(printNode, BSTree.root))
+  addEdge(src, dst) {
+    this.arr[src][dst] = 1;
+  }
+
+  checkEdge(src, dst) {
+    if (this.arr[src][dst] === 1) {
+      return true
+    }
+    return false
+  }
+
+  print() {
+    for (let i = 0; i < this.arr.length; i++) {
+      for (let j = 0; j < this.arr[i].length; j++) {
+        console.log(`${this.arr[i][j]} `)
+      }
+    }
+  }
+}

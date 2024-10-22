@@ -1,39 +1,38 @@
-class Queue {
+export default class Queue {
   constructor() {
     this.items = {};
     this.head = 0;
     this.tail = 0;
   }
 
-  // property accessors O(1) time complexity
   enqueue(item) {
     this.items[this.tail] = item;
-    this.tail++;
+    this.tail++
   }
 
   dequeue() {
     if (this.head === this.tail) {
-      throw new Error('empty queue')
+      throw new Error('Queue is empty');
     }
     const item = this.items[this.head];
-    delete this.items[this.head];
+    delete this.items[this.head]
     this.head++;
-    return item;
+    return item
   }
 
   length() {
     if (this.head === this.tail) {
-      throw new Error('empty queue')
+      throw new Error('Queue is empty')
     }
     return this.tail - this.head
   }
 
   head() {
-    return this.items[this.head];
+    return this.items[this.head]
   }
 
   tail() {
-    return this.items[this.tail];
+    return this.items[this.tail]
   }
 
   isEmpty() {
@@ -43,6 +42,3 @@ class Queue {
     return false;
   }
 }
-
-const queue = new Queue();
-export default queue;
