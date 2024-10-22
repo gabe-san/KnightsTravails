@@ -1,3 +1,3 @@
-# Binary Search Tree
+# Knights Travails
 
-Practice using balance binary search tree data structure using JS.
+Give the fastest path of a knight piece in Chess using search algorithm
