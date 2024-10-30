@@ -48,6 +48,17 @@ export default class Graph {
     }
     return null
   }
+  // call if(this.bfsCheck(include all the queues, sets, maps, dx, dy)) return this.reconstruct both route paths
+  /* static bfsCheck(queue, visitedsrc, route, visited dst, dx, dy)
+    current = queue.dequeue
+    for loop() same as above, but new if checks
+    if (newpos is valid) -> newpos.toString
+    if( visiteddst has newpos.toString) -> route.set(newpos.toString, current)
+    return true;
+    if(visitedsrc does not have newpos.toString()) -> visited.add(newpos.toString) and route.set(newpos.string,current);
+    queue.push(newpos)
+    return false for no if check pass
+*/
 
   /* if doing bidirectional BFS:
   reconstruct(routesrc, routedst, src, dst)
