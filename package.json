@@ -4,8 +4,8 @@
     "dev": "webpack serve",
     "deploy": "git subtree push --prefix dist origin gh-pages"
   },
-  "name": "linkedlists",
-  "description": "Practice using linked list data structure using JS.",
+  "name": "knightstravails",
+  "description": "Give the fastest path of a knight piece in Chess using search algorithm",
   "version": "1.0.0",
   "main": "webpack.config.js",
   "author": "",
