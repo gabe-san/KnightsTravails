@@ -6,22 +6,27 @@ export default class Graph {
     // n = n x n chessboard size
     // output return true if position is valid within constraints of chessboard else return false
     const n = 8;
-    if (pos[0] >= 0 && pos[0] <= n - 1 && pos[1] >= 0 && pos[1] <= n - 1) {
+    if (pos[0] >= 0 && pos[0] < n && pos[1] >= 0 && pos[1] < n) {
       return true
     }
     return false
   }
 
+  // time complexity 0n^2
+  // space complexity On^2
+  // can improve by doing bidirectional BFS(two queues: one starting from src and another from dst)
+  // heuristic search : .max(abs(y-x/2))
+  // early pruning: avoid unnecessary check (ex: if abs of newx and dstx > abs of currentx and dstx => skip iteration)
   static knightMoves(src, dst) {
     const visited = new Set();
     const route = new Map();
     const dx = [2, 1, 1, 2, -1, -2, -1, -2];
     const dy = [1, -2, 2, -1, -2, -1, 2, 1];
-
     if (!this.isValid(src) || !this.isValid(dst)) {
       return null
     }
     const queue = new Queue();
+    // const queueDst = new Queue();
     queue.enqueue(src);
     visited.add(src.toString());
     route.set(src.toString(), null);
@@ -44,6 +49,21 @@ export default class Graph {
     return null
   }
 
+  /* if doing bidirectional BFS:
+  reconstruct(routesrc, routedst, src, dst)
+  const pathsrc = [];
+  let current = dst;
+  while (current is not null)
+   -pathsrc.push(current);
+  current = route.get(current.toString());
+  end of loop 1
+  const pathdst = [];
+  current = routedst.get(dst.toString());
+  while (current is not null) 
+  routedst.push(current)
+  current = routedst.get(current.toString())
+  return pathsrc.reverse().concat(pathdst)
+*/
   static reconstruct(route, dst) {
     const path = [];
     let current = dst;
